@@ -6,7 +6,7 @@ public class Key
 
     public Key(int cipherKey)
     {
-        this.cipherKey = cipherKey % 26;
+        this.cipherKey = cipherKey;
     }
 
     public int getCipherKey()

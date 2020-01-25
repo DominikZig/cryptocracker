@@ -4,8 +4,6 @@ import org.springframework.stereotype.Service;
 import zigmanov.dominik.cryptocracker.model.Key;
 import zigmanov.dominik.cryptocracker.model.PlainText;
 
-import javax.validation.constraints.NotNull;
-
 @Service("CaesarService")
 public class CaesarService
 {
@@ -14,27 +12,38 @@ public class CaesarService
         return Character.isLetter(c);
     }
 
-    public String encryptMessage(Key theKey, @NotNull PlainText thePlainText)
+    public String encryptMessage(Key theKey, PlainText thePlainText)
     {
-        String returnValue = "";
+        StringBuilder sb = new StringBuilder();
+
+        System.out.println(theKey.getCipherKey());
+        System.out.println(thePlainText.getPlainText());
+
+        System.out.println(thePlainText.getPlainText().charAt(0));
+        System.out.println(thePlainText.getPlainText().charAt(1));
+        System.out.println(thePlainText.getPlainText().charAt(2));
+        System.out.println(thePlainText.getPlainText().charAt(3));
+
 
         for (int i = 0; i < thePlainText.getPlainText().length(); i++)
         {
             if (isAlpha(thePlainText.getPlainText().charAt(i)) == true)
             {
-                returnValue += (thePlainText.getPlainText().charAt(i) - 'A' + theKey.getCipherKey()) + 'A';
+                sb.append((thePlainText.getPlainText().charAt(i) - 'a' + theKey.getCipherKey()) % 26 + 'a');
 
-                return returnValue;
+                System.out.println(sb);
             }
             else
             {
-                returnValue += thePlainText.getPlainText().charAt(i);
+                sb.append(thePlainText.getPlainText().charAt(i));
 
-                return returnValue;
+                System.out.println("else"+sb);
             }
         }
 
-        return null;
+        System.out.println("Final text:"+sb.toString());
+
+        return sb.toString();
     }
 
 //    public String encryptMessage(int theKeyValue, String thePlainTextValue)
