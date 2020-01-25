@@ -13,4 +13,9 @@ public class PlainText
     {
         return plainText;
     }
+
+    public void setPlainText(String plainText)
+    {
+        this.plainText = plainText;
+    }
 }

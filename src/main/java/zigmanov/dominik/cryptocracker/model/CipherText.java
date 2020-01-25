@@ -13,4 +13,9 @@ public class CipherText
     {
         return cipherText;
     }
+
+    public void setCipherText(String cipherText)
+    {
+        this.cipherText = cipherText;
+    }
 }

@@ -1,6 +1,7 @@
 package zigmanov.dominik.cryptocracker.service;
 
 import org.springframework.stereotype.Service;
+import zigmanov.dominik.cryptocracker.model.CipherText;
 import zigmanov.dominik.cryptocracker.model.Key;
 import zigmanov.dominik.cryptocracker.model.PlainText;
 
@@ -22,7 +23,7 @@ public class CaesarService
         {
             if (isAlpha(lowerPlainText.charAt(i)) == true)
             {
-                sb.append((lowerPlainText.charAt(i) - 'a' + theKey.getCipherKey()) % 26 + 'a');
+                sb.append((Character.toString((lowerPlainText.charAt(i) - 'a' + theKey.getCipherKey()) % 26 + 'a')));
 
                 System.out.println(sb);
             }
@@ -39,28 +40,28 @@ public class CaesarService
         return sb.toString();
     }
 
-//    public String encryptMessage(int theKeyValue, String thePlainTextValue)
-//    {
-//        System.out.println("test");
-//
-//        String returnValue = "";
-//
-//        for (int i = 0; i < thePlainTextValue.length(); i++)
-//        {
-//            if (isAlpha(thePlainTextValue.charAt(i)) == true)
-//            {
-//                returnValue += (thePlainTextValue.charAt(i) - 'A' + theKeyValue) + 'A';
-//
-//                return returnValue;
-//            }
-//            else
-//            {
-//                returnValue += thePlainTextValue.charAt(i);
-//
-//                return returnValue;
-//            }
-//        }
-//
-//        return null;
-//    }
+    public String decryptMessage(Key theKey, CipherText theCipherText)
+    {
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < theCipherText.getCipherText().length(); i++)
+        {
+            if (isAlpha(theCipherText.getCipherText().charAt(i)) == true)
+            {
+                sb.append((Character.toString((theCipherText.getCipherText().charAt(i) - 'a' + 26 - theKey.getCipherKey()) % 26 + 'a')));
+
+                System.out.println(sb);
+            }
+            else
+            {
+                sb.append(theCipherText.getCipherText().charAt(i));
+
+                System.out.println("else"+sb);
+            }
+        }
+
+        System.out.println("Converted text:"+sb.toString());
+
+        return sb.toString();
+    }
 }

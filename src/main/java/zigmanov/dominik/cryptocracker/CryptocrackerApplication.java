@@ -1,6 +1,5 @@
 package zigmanov.dominik.cryptocracker;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import zigmanov.dominik.cryptocracker.model.CipherText;
@@ -15,6 +14,8 @@ public class CryptocrackerApplication
 
 	static PlainText testPlainText = new PlainText("abcd");
 
+	static CipherText testCipherText = new CipherText("");
+
 	public static void main(String[] args)
 	{
 		SpringApplication.run(CryptocrackerApplication.class, args);
@@ -23,7 +24,13 @@ public class CryptocrackerApplication
 
 		System.out.println(testKey.getCipherKey());
 		System.out.println(testPlainText.getPlainText());
-		//System.out.println(theService.encryptMessage(testKey.getCipherKey(), testPlainText.getPlainText()));
 		System.out.println(theService.encryptMessage(testKey, testPlainText));
+
+		testCipherText.setCipherText(theService.encryptMessage(testKey, testPlainText));
+
+		System.out.println("Cipher:"+testCipherText.getCipherText());
+
+		System.out.println(theService.decryptMessage(testKey, testCipherText));
+
 	}
 }
