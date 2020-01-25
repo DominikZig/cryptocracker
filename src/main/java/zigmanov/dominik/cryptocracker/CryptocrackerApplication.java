@@ -22,15 +22,15 @@ public class CryptocrackerApplication
 
 		CaesarService theService = new CaesarService();
 
-		System.out.println(testKey.getCipherKey());
-		System.out.println(testPlainText.getPlainText());
-		System.out.println(theService.encryptMessage(testKey, testPlainText));
+		System.out.println("Initial message: "+ testPlainText.getPlainText());
 
 		testCipherText.setCipherText(theService.encryptMessage(testKey, testPlainText));
 
-		System.out.println("Cipher:"+testCipherText.getCipherText());
+		System.out.println("Encrypted message: "+testCipherText.getCipherText());
 
-		System.out.println(theService.decryptMessage(testKey, testCipherText));
+		testPlainText.setPlainText(theService.decryptMessage(testKey, testCipherText));
+
+		System.out.println("Decrypted message: "+testPlainText.getPlainText());
 
 	}
 }

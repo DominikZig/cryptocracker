@@ -8,14 +8,14 @@ import zigmanov.dominik.cryptocracker.model.PlainText;
 @Service("CaesarService")
 public class CaesarService
 {
-    public static boolean isAlpha(Character c)
+    private static boolean isAlpha(Character c)
     {
         return Character.isLetter(c);
     }
 
     public String encryptMessage(Key theKey, PlainText thePlainText)
     {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder encryptedText = new StringBuilder();
 
         String lowerPlainText = thePlainText.getPlainText().toLowerCase();
 
@@ -23,45 +23,33 @@ public class CaesarService
         {
             if (isAlpha(lowerPlainText.charAt(i)) == true)
             {
-                sb.append((Character.toString((lowerPlainText.charAt(i) - 'a' + theKey.getCipherKey()) % 26 + 'a')));
-
-                System.out.println(sb);
+                encryptedText.append((Character.toString((lowerPlainText.charAt(i) - 'a' + theKey.getCipherKey()) % 26 + 'a')));
             }
             else
             {
-                sb.append(lowerPlainText.charAt(i));
-
-                System.out.println("else"+sb);
+                encryptedText.append(lowerPlainText.charAt(i));
             }
         }
 
-        System.out.println("Final text:"+sb.toString());
-
-        return sb.toString();
+        return encryptedText.toString();
     }
 
     public String decryptMessage(Key theKey, CipherText theCipherText)
     {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder decryptedText = new StringBuilder();
 
         for (int i = 0; i < theCipherText.getCipherText().length(); i++)
         {
             if (isAlpha(theCipherText.getCipherText().charAt(i)) == true)
             {
-                sb.append((Character.toString((theCipherText.getCipherText().charAt(i) - 'a' + 26 - theKey.getCipherKey()) % 26 + 'a')));
-
-                System.out.println(sb);
+                decryptedText.append((Character.toString((theCipherText.getCipherText().charAt(i) - 'a' + 26 - theKey.getCipherKey()) % 26 + 'a')));
             }
             else
             {
-                sb.append(theCipherText.getCipherText().charAt(i));
-
-                System.out.println("else"+sb);
+                decryptedText.append(theCipherText.getCipherText().charAt(i));
             }
         }
 
-        System.out.println("Converted text:"+sb.toString());
-
-        return sb.toString();
+        return decryptedText.toString();
     }
 }
