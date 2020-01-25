@@ -16,26 +16,19 @@ public class CaesarService
     {
         StringBuilder sb = new StringBuilder();
 
-        System.out.println(theKey.getCipherKey());
-        System.out.println(thePlainText.getPlainText());
+        String lowerPlainText = thePlainText.getPlainText().toLowerCase();
 
-        System.out.println(thePlainText.getPlainText().charAt(0));
-        System.out.println(thePlainText.getPlainText().charAt(1));
-        System.out.println(thePlainText.getPlainText().charAt(2));
-        System.out.println(thePlainText.getPlainText().charAt(3));
-
-
-        for (int i = 0; i < thePlainText.getPlainText().length(); i++)
+        for (int i = 0; i < lowerPlainText.length(); i++)
         {
-            if (isAlpha(thePlainText.getPlainText().charAt(i)) == true)
+            if (isAlpha(lowerPlainText.charAt(i)) == true)
             {
-                sb.append((thePlainText.getPlainText().charAt(i) - 'a' + theKey.getCipherKey()) % 26 + 'a');
+                sb.append((lowerPlainText.charAt(i) - 'a' + theKey.getCipherKey()) % 26 + 'a');
 
                 System.out.println(sb);
             }
             else
             {
-                sb.append(thePlainText.getPlainText().charAt(i));
+                sb.append(lowerPlainText.charAt(i));
 
                 System.out.println("else"+sb);
             }

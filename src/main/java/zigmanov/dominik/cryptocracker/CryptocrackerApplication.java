@@ -14,7 +14,7 @@ public class CryptocrackerApplication
 	static Key testKey = new Key(3);
 
 	static PlainText testPlainText = new PlainText("abcd");
-	
+
 	public static void main(String[] args)
 	{
 		SpringApplication.run(CryptocrackerApplication.class, args);
