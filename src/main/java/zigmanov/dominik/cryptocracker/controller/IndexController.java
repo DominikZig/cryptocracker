@@ -25,15 +25,9 @@ public class IndexController
 
         CipherText testCipherText = new CipherText("");
 
-        System.out.println("Initial message: "+ testPlainText.getPlainText());
-
         testCipherText.setCipherText(theService.encryptMessage(testKey, testPlainText));
 
-        System.out.println("Encrypted message: "+testCipherText.getCipherText());
-
         testPlainText.setPlainText(theService.decryptMessage(testKey, testCipherText));
-
-        System.out.println("Decrypted message: "+testPlainText.getPlainText());
 
         return "Initial message: "+ testPlainText.getPlainText()+
                 "Encrypted message: "+testCipherText.getCipherText()+
