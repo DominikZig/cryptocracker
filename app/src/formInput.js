@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Component} from "react";
 import './App.css';
 
@@ -7,7 +7,8 @@ class FormInput extends Component {
     state = {
         showEncrypt: true,
         showDecrypt: false,
-        plainTextData: ''
+        plainTextData: "",
+        placeholder: "Enter your message",
     };
 
     handleEncryptSubmit = e => {
@@ -17,8 +18,7 @@ class FormInput extends Component {
             showDecrypt: true
         });
 
-        fetch('/encrypt',
-            )
+        this.state.placeholder = "Test";
     };
 
     handleDecryptSubmit = e => {
@@ -32,7 +32,7 @@ class FormInput extends Component {
     render() {
         return (
             <form onSubmit={this.handleEncryptSubmit}>
-                    <div id={"inputBox"}><input className="input is-large inputBox" type="text" placeholder="Enter your message"/></div>
+                    <div id={"inputBox"}><input className="input is-large inputBox" type="text" placeholder={this.state.placeholder}/></div>
                     <div id={"key"}><input className="input key" type="text" placeholder="Key"/></div>
                     <button onClick={this.handleEncryptSubmit} type="submit" className="button is-success" style={{ display : this.state.showEncrypt ? "" : "none"}}>Encrypt</button>
                     <button onClick={this.handleDecryptSubmit} type="submit" className="button is-danger" style={{ display : this.state.showDecrypt ? "" : "none"}}>Decrypt</button>
