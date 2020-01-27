@@ -1,24 +1,36 @@
 import React from 'react';
-import {Component} from "react";
 import './App.css';
 
-class FormInput extends Component {
+class FormInput extends React.Component {
 
-    state = {
-        showEncrypt: true,
-        showDecrypt: false,
-        plainTextData: "",
-        inputValue: null,
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            showEncrypt: true,
+            showDecrypt: false,
+            plainTextData: "",
+            value: null
+        };
+
+        this.handleChange = this.handleChange.bind(this);
+        this.handleEncryptSubmit = this.handleEncryptSubmit.bind(this);
+    }
+
+    handleChange = e => {
+        this.setState({value: e.target.value});
     };
 
     handleEncryptSubmit = e => {
         e.preventDefault();
+
         this.setState({
             showEncrypt: false,
             showDecrypt: true
         });
 
-        this.state.inputValue = "Changed";
+        // this.state.inputValue = "Changed";
+        alert('Your input: ' + this.state.value);
     };
 
     handleDecryptSubmit = e => {
@@ -31,12 +43,14 @@ class FormInput extends Component {
 
     render() {
         return (
+            <React.Fragment>
             <form onSubmit={this.handleEncryptSubmit}>
-                    <div id={"inputBox"}><input className="input is-large inputBox" type="text" value={this.state.inputValue} placeholder="Enter your message"/></div>
-                    <div id={"key"}><input className="input key" type="text" placeholder="Key"/></div>
-                    <button onClick={this.handleEncryptSubmit} type="submit" className="button is-success" style={{ display : this.state.showEncrypt ? "" : "none"}}>Encrypt</button>
-                    <button onClick={this.handleDecryptSubmit} type="submit" className="button is-danger" style={{ display : this.state.showDecrypt ? "" : "none"}}>Decrypt</button>
+                    <div id={"inputBox"}><input className="input is-large inputBox" type="text" value={this.state.value} onChange={this.handleChange} placeholder="Enter your message"/></div>
+                    {/*<div id={"key"}><input className="input key" type="text" placeholder="Key"/></div>*/}
+                    <input type="submit" value="Encrypt" className="button is-success" style={{ display : this.state.showEncrypt ? "" : "none"}}/>
             </form>
+            <button onClick={this.handleDecryptSubmit} type="submit" className="button is-danger" style={{ display : this.state.showDecrypt ? "" : "none"}}>Decrypt</button>
+            </React.Fragment>
         )
     }
 }

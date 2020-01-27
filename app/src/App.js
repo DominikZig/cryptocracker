@@ -27,7 +27,7 @@ function App() {
         <body>
             <div className="centre">
                 <FormInput/>
-                <h1>{encryptedText}</h1>
+                {/*<h1>{encryptedText}</h1>*/}
             </div>
         </body>
     </div>
