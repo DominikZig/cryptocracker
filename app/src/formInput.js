@@ -10,7 +10,8 @@ class FormInput extends React.Component {
             showEncrypt: true,
             showDecrypt: false,
             plainTextData: "",
-            value: null
+            textValue: null,
+            keyValue: null
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -18,7 +19,13 @@ class FormInput extends React.Component {
     }
 
     handleChange = e => {
-        this.setState({value: e.target.value});
+        const target = e.target;
+        const value = target.value;
+        const name = target.name;
+
+        this.setState({
+            [name] : value
+        });
     };
 
     handleEncryptSubmit = e => {
@@ -30,7 +37,7 @@ class FormInput extends React.Component {
         });
 
         // this.state.inputValue = "Changed";
-        alert('Your input: ' + this.state.value);
+        alert('Your input: ' + this.state.textValue + this.state.keyValue);
     };
 
     handleDecryptSubmit = e => {
@@ -45,8 +52,8 @@ class FormInput extends React.Component {
         return (
             <React.Fragment>
             <form onSubmit={this.handleEncryptSubmit}>
-                    <div id={"inputBox"}><input className="input is-large inputBox" type="text" value={this.state.value} onChange={this.handleChange} placeholder="Enter your message"/></div>
-                    {/*<div id={"key"}><input className="input key" type="text" placeholder="Key"/></div>*/}
+                    <div id={"inputBox"}><input name="textValue" className="input is-large inputBox" type="text" value={this.state.textValue} onChange={this.handleChange} placeholder="Enter your message"/></div>
+                    <div id={"key"}><input name="keyValue" className="input key" type="text" value={this.state.keyValue} onChange={this.handleChange} placeholder="Key"/></div>
                     <input type="submit" value="Encrypt" className="button is-success" style={{ display : this.state.showEncrypt ? "" : "none"}}/>
             </form>
             <button onClick={this.handleDecryptSubmit} type="submit" className="button is-danger" style={{ display : this.state.showDecrypt ? "" : "none"}}>Decrypt</button>
