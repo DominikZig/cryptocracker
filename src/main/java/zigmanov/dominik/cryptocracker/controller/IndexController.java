@@ -14,7 +14,7 @@ public class IndexController
     @Autowired
     private CaesarService theService;
 
-    @GetMapping("/")
+    @GetMapping("/hello")
     public String index()
     {
         Key testKey = new Key(3);
