@@ -7,7 +7,7 @@ class MainButton extends Component {
         showDecrypt: false
     };
 
-    showEncrypt = e => {
+    hideEncrypt = e => {
         e.preventDefault();
         this.setState({
             showEncrypt: false,
@@ -15,7 +15,7 @@ class MainButton extends Component {
         });
     };
 
-    showDecrypt = e => {
+    hideDecrypt = e => {
         e.preventDefault();
         this.setState({
             showEncrypt: true,
@@ -23,12 +23,14 @@ class MainButton extends Component {
         });
     };
 
+
+
     render() {
         return (
-            <React.Fragment>
-                <button onClick={this.showEncrypt} className="button is-success" style={{ display : this.state.showEncrypt ? "" : "none"}}>Encrypt</button>
-                <button onClick={this.showDecrypt} className="button is-danger" style={{ display : this.state.showDecrypt ? "" : "none"}}>Decrypt</button>
-            </React.Fragment>
+            <form>
+                <button onClick={this.hideEncrypt} className="button is-success" style={{ display : this.state.showEncrypt ? "" : "none"}}>Encrypt</button>
+                <button onClick={this.hideDecrypt} className="button is-danger" style={{ display : this.state.showDecrypt ? "" : "none"}}>Decrypt</button>
+            </form>
         )
     }
 }

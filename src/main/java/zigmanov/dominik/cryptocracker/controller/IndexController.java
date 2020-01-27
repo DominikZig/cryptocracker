@@ -2,6 +2,8 @@ package zigmanov.dominik.cryptocracker.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import zigmanov.dominik.cryptocracker.model.CipherText;
 import zigmanov.dominik.cryptocracker.model.Key;
@@ -14,7 +16,7 @@ public class IndexController
     @Autowired
     private CaesarService theService;
 
-    @GetMapping("/hello")
+    @PostMapping("/encrypt")
     public String index()
     {
         Key testKey = new Key(3);

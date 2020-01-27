@@ -1,4 +1,4 @@
-import React, {Component, useState, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import './App.css';
 import '../node_modules/bulma/css/bulma.css';
 import lock from './padlock-10-128.png';
@@ -6,15 +6,15 @@ import unlock from './padlock-9-128.png';
 import MainButton from "./MainButton";
 
 function App() {
-    const [message, setMessage] = useState("");
+    const [encryptedText, setEncryptedText] = useState("");
 
     useEffect(() => {
         fetch('/hello')
             .then(response => response.text())
-            .then(message => {
-                setMessage(message);
+            .then(encryptedText => {
+                setEncryptedText(encryptedText);
             });
-    },[])
+    }, []);
 
     return (
     <div className="App">
@@ -26,10 +26,11 @@ function App() {
       </header>
         <body>
             <div className="centre">
-                <input className="input is-large" type="text" placeholder="Enter your message"/>
-                <h1>{message}</h1>
+                <div id={"inputBox"}><input className="input is-large inputBox" type="text" placeholder="Enter your message"/></div>
+                <div id={"key"}><input className="input key" type="text" placeholder="Key"/></div>
             </div>
             <MainButton/>
+            {/*<h1>{encryptedText}</h1>*/}
         </body>
     </div>
   );
