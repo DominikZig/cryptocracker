@@ -28,13 +28,15 @@ h1 {
 
 .centre {
   margin: auto;
-  width: 40%;
+  width: 20%;
   padding-top: 10%;
   font-weight: bold;
   display: table;
 }
 
 .input {
+  width: 650px !important;
+  margin-right: 15px;
   font-weight: bold;
 }
 

@@ -3,13 +3,13 @@ import './App.css';
 import '../node_modules/bulma/css/bulma.css';
 import lock from './padlock-10-128.png';
 import unlock from './padlock-9-128.png';
-import MainButton from "./MainButton";
+import FormInput from "./formInput";
 
 function App() {
     const [encryptedText, setEncryptedText] = useState("");
 
     useEffect(() => {
-        fetch('/hello')
+        fetch('/encrypt')
             .then(response => response.text())
             .then(encryptedText => {
                 setEncryptedText(encryptedText);
@@ -26,11 +26,9 @@ function App() {
       </header>
         <body>
             <div className="centre">
-                <div id={"inputBox"}><input className="input is-large inputBox" type="text" placeholder="Enter your message"/></div>
-                <div id={"key"}><input className="input key" type="text" placeholder="Key"/></div>
+                <FormInput/>
+                <h1>{encryptedText}</h1>
             </div>
-            <MainButton/>
-            {/*<h1>{encryptedText}</h1>*/}
         </body>
     </div>
   );

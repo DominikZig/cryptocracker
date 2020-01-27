@@ -16,8 +16,8 @@ public class IndexController
     @Autowired
     private CaesarService theService;
 
-    @PostMapping("/encrypt")
-    public String index()
+    @GetMapping("/encrypt")
+    public String getEncryptedText()
     {
         Key testKey = new Key(3);
 
@@ -32,5 +32,13 @@ public class IndexController
         return "Initial message: "+ testPlainText.getPlainText()+
                 "Encrypted message: "+testCipherText.getCipherText()+
                 "Decrypted message: "+testPlainText.getPlainText();
+    }
+
+    @PostMapping("/encrypt")
+    public String postEncryptedText()
+    {
+
+
+        return getEncryptedText();
     }
 }
