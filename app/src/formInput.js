@@ -10,13 +10,26 @@ class FormInput extends React.Component {
             showEncrypt: true,
             showDecrypt: false,
             plainTextData: "",
-            textValue: null,
-            keyValue: null
+            textValue: "",
+            keyValue: undefined,
+            encryptedText: ""
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleEncryptSubmit = this.handleEncryptSubmit.bind(this);
     }
+
+    componentDidMount() {
+        setInterval(this.getEncrypted, 250);
+    }
+
+    getEncrypted = () => {
+        fetch('/encrypt')
+            .then(response => response.text())
+            .then(encryptedText => {
+                this.setState({encryptedText: encryptedText});
+            });
+    };
 
     handleChange = e => {
         const target = e.target;
@@ -36,8 +49,9 @@ class FormInput extends React.Component {
             showDecrypt: true
         });
 
-        // this.state.inputValue = "Changed";
-        alert('Your input: ' + this.state.textValue + this.state.keyValue);
+        this.getEncrypted();
+
+        this.state.textValue = this.state.encryptedText;
     };
 
     handleDecryptSubmit = e => {
