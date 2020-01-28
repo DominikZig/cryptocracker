@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import './App.css';
 import '../node_modules/bulma/css/bulma.css';
 import lock from './padlock-10-128.png';
@@ -6,16 +6,6 @@ import unlock from './padlock-9-128.png';
 import FormInput from "./formInput";
 
 function App() {
-    const [encryptedText, setEncryptedText] = useState("");
-
-    useEffect(() => {
-        fetch('/encrypt')
-            .then(response => response.text())
-            .then(encryptedText => {
-                setEncryptedText(encryptedText);
-            });
-    }, []);
-
     return (
     <div className="App">
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -27,7 +17,6 @@ function App() {
         <body>
             <div className="centre">
                 <FormInput/>
-                {/*<h1>{encryptedText}</h1>*/}
             </div>
         </body>
     </div>
