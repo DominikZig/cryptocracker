@@ -9,7 +9,7 @@ class FormInput extends React.Component {
         this.state = {
             showEncrypt: true,
             showDecrypt: false,
-            plainTextValue: "",
+            inputTextValue: "",
             keyValue: undefined,
             encryptedText: ""
         };
@@ -21,7 +21,7 @@ class FormInput extends React.Component {
     componentDidMount() {
         // setInterval(this.getEncrypted, 250);
 
-        setInterval(this.setEncrypted, 250);
+        setInterval(this.setEncrypted, 1000);
     }
 
     getEncrypted = () => {
@@ -34,9 +34,16 @@ class FormInput extends React.Component {
 
     setEncrypted = () => {
 
-        const PlainText = { plainText: this.state.plainTextValue};
+        const PlainText = {
+            plainText: this.state.inputTextValue
+        };
+
+        // const Key = {
+        //     cipherKey: this.state.keyValue
+        // };
 
         console.log(JSON.stringify(PlainText));
+        // console.log(JSON.stringify(Key));
 
         fetch('/encrypt', {
             method: 'POST',
@@ -47,11 +54,11 @@ class FormInput extends React.Component {
             body: JSON.stringify(PlainText),
             })
             .then((response) => response.text())
-            .then((plainTextValue) => {
-                console.log('Success:', plainTextValue);
-                this.state.plainTextValue = plainTextValue;
-                console.log(this.state.plainTextValue);
-                return plainTextValue;
+            .then((inputTextValue) => {
+
+                this.state.inputTextValue = inputTextValue;
+
+                return inputTextValue;
             });
     };
 
@@ -77,7 +84,7 @@ class FormInput extends React.Component {
 
         // this.getEncrypted();
 
-        //this.state.plainTextValue = this.state.encryptedText;
+        //this.state.inputTextValue = this.state.encryptedText;
     };
 
     handleDecryptSubmit = e => {
@@ -92,7 +99,7 @@ class FormInput extends React.Component {
         return (
             <React.Fragment>
             <form onSubmit={this.handleEncryptSubmit}>
-                    <div id={"inputBox"}><input name="plainTextValue" className="input is-large inputBox" type="text" value={this.state.plainTextValue} onChange={this.handleChange} placeholder="Enter your message"/></div>
+                    <div id={"inputBox"}><input name="inputTextValue" className="input is-large inputBox" type="text" value={this.state.inputTextValue} onChange={this.handleChange} placeholder="Enter your message"/></div>
                     <div id={"key"}><input name="keyValue" className="input key" type="text" value={this.state.keyValue} onChange={this.handleChange} placeholder="Key"/></div>
                     <input type="submit" value="Encrypt" className="button is-success" style={{ display : this.state.showEncrypt ? "" : "none"}}/>
             </form>
