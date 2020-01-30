@@ -4,9 +4,8 @@ public class PlainText
 {
     private String plainText;
 
-    public PlainText(String plainText)
+    public PlainText()
     {
-        this.plainText = plainText;
     }
 
     public String getPlainText()

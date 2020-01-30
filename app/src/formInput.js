@@ -19,7 +19,9 @@ class FormInput extends React.Component {
     }
 
     componentDidMount() {
-        setInterval(this.getEncrypted, 250);
+        // setInterval(this.getEncrypted, 250);
+
+        setInterval(this.setEncrypted, 250);
     }
 
     getEncrypted = () => {
@@ -27,6 +29,29 @@ class FormInput extends React.Component {
             .then(response => response.text())
             .then(encryptedText => {
                 this.setState({encryptedText: encryptedText});
+            });
+    };
+
+    setEncrypted = () => {
+
+        const PlainText = { plainText: this.state.plainTextValue};
+
+        console.log(JSON.stringify(PlainText));
+
+        fetch('/encrypt', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(PlainText),
+            })
+            .then((response) => response.text())
+            .then((plainTextValue) => {
+                console.log('Success:', plainTextValue);
+                this.state.plainTextValue = plainTextValue;
+                console.log(this.state.plainTextValue);
+                return plainTextValue;
             });
     };
 
@@ -48,9 +73,11 @@ class FormInput extends React.Component {
             showDecrypt: true
         });
 
-        this.getEncrypted();
+        this.setEncrypted();
 
-        this.state.plainTextValue = this.state.encryptedText;
+        // this.getEncrypted();
+
+        //this.state.plainTextValue = this.state.encryptedText;
     };
 
     handleDecryptSubmit = e => {
