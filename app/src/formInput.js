@@ -19,9 +19,7 @@ class FormInput extends React.Component {
     }
 
     componentDidMount() {
-        // setInterval(this.getEncrypted, 250);
-
-        setInterval(this.setEncrypted, 1000);
+        this.inputTextValue = this.setEncrypted;
     }
 
     getEncrypted = () => {
@@ -38,14 +36,7 @@ class FormInput extends React.Component {
             plainText: this.state.inputTextValue,
             cipherKey: this.state.keyValue
         };
-
-        // const Key = {
-        //     cipherKey: this.state.keyValue
-        // };
-
-        console.log(JSON.stringify(PlainText));
-        //console.log(JSON.stringify(Key));
-
+        
         fetch('/encrypt', {
             method: 'POST',
             headers: {
@@ -57,9 +48,7 @@ class FormInput extends React.Component {
             .then((response) => response.text())
             .then((inputTextValue) => {
 
-                this.state.inputTextValue = inputTextValue;
-
-                return inputTextValue;
+                return this.setState({inputTextValue: inputTextValue});
             });
     };
 
