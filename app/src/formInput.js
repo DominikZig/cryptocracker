@@ -35,7 +35,8 @@ class FormInput extends React.Component {
     setEncrypted = () => {
 
         const PlainText = {
-            plainText: this.state.inputTextValue
+            plainText: this.state.inputTextValue,
+            cipherKey: this.state.keyValue
         };
 
         // const Key = {
@@ -43,7 +44,7 @@ class FormInput extends React.Component {
         // };
 
         console.log(JSON.stringify(PlainText));
-        // console.log(JSON.stringify(Key));
+        //console.log(JSON.stringify(Key));
 
         fetch('/encrypt', {
             method: 'POST',
