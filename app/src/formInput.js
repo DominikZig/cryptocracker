@@ -22,6 +22,8 @@ class FormInput extends React.Component {
     componentDidMount() {
         this.inputTextValue = this.setEncrypted;
         this.inputTextValue = this.setPlain;
+        this.showEncrypt = this.changeButton();
+        this.showDecrypt = this.changeButton();
     }
 
     setPlain = () => {
@@ -71,6 +73,11 @@ class FormInput extends React.Component {
         const value = target.value;
         const name = target.name;
 
+        if (this.state.inputTextValue.value == null)
+        {
+            this.changeButton();
+        }
+
         this.setState({
             [name] : value
         });
@@ -98,17 +105,12 @@ class FormInput extends React.Component {
         this.setPlain();
     };
 
-    // checkButton = () => {
-    //     if (this.state.inputTextValue === "")
-    //     {
-    //         console.log(this.state.inputTextValue);
-    //
-    //         this.setState({
-    //             showEncrypt: true,
-    //             showDecrypt: false
-    //         });
-    //     }
-    // };
+    changeButton = () => {
+        this.setState({
+            showEncrypt: true,
+            showDecrypt: false
+        });
+    };
 
     render() {
         return (
