@@ -1,7 +1,6 @@
 package zigmanov.dominik.cryptocracker.service;
 
 import org.springframework.stereotype.Service;
-import zigmanov.dominik.cryptocracker.model.CipherText;
 import zigmanov.dominik.cryptocracker.model.UserInput;
 
 @Service("CaesarService")
@@ -16,7 +15,7 @@ public class CaesarService
     {
         StringBuilder encryptedText = new StringBuilder();
 
-        String lowerPlainText = theUserInput.getPlainText().toLowerCase();
+        String lowerPlainText = theUserInput.getInputtedText().toLowerCase();
 
         for (int i = 0; i < lowerPlainText.length(); i++)
         {
@@ -33,19 +32,19 @@ public class CaesarService
         return encryptedText.toString();
     }
 
-    public String decryptMessage(CipherText theCipherText, UserInput theUserInput)
+    public String decryptMessage(UserInput theUserInput)
     {
         StringBuilder decryptedText = new StringBuilder();
 
-        for (int i = 0; i < theCipherText.getCipherText().length(); i++)
+        for (int i = 0; i < theUserInput.getInputtedText().length(); i++)
         {
-            if (isAlpha(theCipherText.getCipherText().charAt(i)) == true)
+            if (isAlpha(theUserInput.getInputtedText().charAt(i)) == true)
             {
-                decryptedText.append((Character.toString((theCipherText.getCipherText().charAt(i) - 'a' + 26 - theUserInput.getCipherKey()) % 26 + 'a')));
+                decryptedText.append((Character.toString((theUserInput.getInputtedText().charAt(i) - 'a' + 26 - theUserInput.getCipherKey()) % 26 + 'a')));
             }
             else
             {
-                decryptedText.append(theCipherText.getCipherText().charAt(i));
+                decryptedText.append(theUserInput.getInputtedText().charAt(i));
             }
         }
 

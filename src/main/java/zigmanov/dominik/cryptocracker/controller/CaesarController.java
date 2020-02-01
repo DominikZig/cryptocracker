@@ -16,28 +16,22 @@ public class CaesarController
     @PostMapping("/encrypt")
     public String setEncryptedText(@RequestBody UserInput theUserInput)
     {
-        System.out.println(theUserInput.getPlainText());
-        System.out.println(theUserInput.getCipherKey());
+        CipherText cipherText = new CipherText("");
 
-        CipherText testCipherText = new CipherText("");
+        cipherText.setCipherText(theService.encryptMessage(theUserInput));
 
-        testCipherText.setCipherText(theService.encryptMessage(theUserInput));
-
-        return testCipherText.getCipherText();
+        return cipherText.getCipherText();
     }
 
-//    @GetMapping("/decrypt")
-//    public String getEncryptedText()
-//    {
-//        Key testKey = new Key(3);
-//
-//        UserInput testUserInput = new UserInput();
-//
-//        CipherText testCipherText = new CipherText("");
-//
-//        testCipherText.setCipherText(theService.decryptMessage(testCipherText, theUserInput));
-//
-//        return testCipherText.getCipherText();
-//    }
+    @ResponseBody
+    @PostMapping("/decrypt")
+    public String setPlainText(@RequestBody UserInput theUserInput)
+    {
+        CipherText cipherText = new CipherText("");
+
+        cipherText.setCipherText(theService.decryptMessage(theUserInput));
+
+        return cipherText.getCipherText();
+    }
 
 }

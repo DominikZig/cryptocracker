@@ -2,21 +2,21 @@ package zigmanov.dominik.cryptocracker.model;
 
 public class UserInput
 {
-    private String plainText;
+    private String inputtedText;
     private int cipherKey;
 
     public UserInput()
     {
     }
 
-    public String getPlainText()
+    public String getInputtedText()
     {
-        return plainText;
+        return inputtedText;
     }
 
-    public void setPlainText(String plainText)
+    public void setInputtedTextText(String inputtedText)
     {
-        this.plainText = plainText;
+        this.inputtedText = inputtedText;
     }
 
     public int getCipherKey()

@@ -16,38 +16,52 @@ class FormInput extends React.Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleEncryptSubmit = this.handleEncryptSubmit.bind(this);
+        this.handleDecryptSubmit = this.handleDecryptSubmit.bind(this);
     }
 
     componentDidMount() {
         this.inputTextValue = this.setEncrypted;
+        this.inputTextValue = this.setPlain;
     }
 
-    getEncrypted = () => {
-        fetch('/encrypt')
-            .then(response => response.text())
-            .then(encryptedText => {
-                this.setState({encryptedText: encryptedText});
+    setPlain = () => {
+
+        const UserInput = {
+            inputtedText: this.state.inputTextValue,
+            cipherKey: this.state.keyValue
+        };
+
+        fetch('/decrypt', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(UserInput),
+        })
+            .then((response) => response.text())
+            .then((inputTextValue) => {
+                return this.setState({inputTextValue: inputTextValue});
             });
     };
 
     setEncrypted = () => {
 
-        const PlainText = {
-            plainText: this.state.inputTextValue,
+        const UserInput = {
+            inputtedText: this.state.inputTextValue,
             cipherKey: this.state.keyValue
         };
-        
+
         fetch('/encrypt', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json'
             },
-            body: JSON.stringify(PlainText),
+            body: JSON.stringify(UserInput),
             })
             .then((response) => response.text())
             .then((inputTextValue) => {
-
                 return this.setState({inputTextValue: inputTextValue});
             });
     };
@@ -71,10 +85,6 @@ class FormInput extends React.Component {
         });
 
         this.setEncrypted();
-
-        // this.getEncrypted();
-
-        //this.state.inputTextValue = this.state.encryptedText;
     };
 
     handleDecryptSubmit = e => {
@@ -83,6 +93,8 @@ class FormInput extends React.Component {
             showEncrypt: true,
             showDecrypt: false
         });
+
+        this.setPlain();
     };
 
     render() {
