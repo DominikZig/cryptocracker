@@ -89,6 +89,7 @@ class FormInput extends React.Component {
 
     handleDecryptSubmit = e => {
         e.preventDefault();
+
         this.setState({
             showEncrypt: true,
             showDecrypt: false
@@ -97,12 +98,24 @@ class FormInput extends React.Component {
         this.setPlain();
     };
 
+    // checkButton = () => {
+    //     if (this.state.inputTextValue === "")
+    //     {
+    //         console.log(this.state.inputTextValue);
+    //
+    //         this.setState({
+    //             showEncrypt: true,
+    //             showDecrypt: false
+    //         });
+    //     }
+    // };
+
     render() {
         return (
             <React.Fragment>
             <form onSubmit={this.handleEncryptSubmit}>
-                    <div id={"inputBox"}><input name="inputTextValue" className="input is-large inputBox" type="text" value={this.state.inputTextValue} onChange={this.handleChange} placeholder="Enter your message"/></div>
-                    <div id={"key"}><input name="keyValue" className="input key" type="text" value={this.state.keyValue} onChange={this.handleChange} placeholder="Key"/></div>
+                    <div id={"inputBox"}><input name="inputTextValue" className="input is-large inputBox" pattern="[A-Za-z]+" type="text" value={this.state.inputTextValue} onChange={this.handleChange} placeholder="Enter your message" required/></div>
+                    <div id={"key"}><input name="keyValue" className="input key" type="number" min="1" max="26" value={this.state.keyValue} onChange={this.handleChange} placeholder="Key" required/></div>
                     <input type="submit" value="Encrypt" className="button is-success" style={{ display : this.state.showEncrypt ? "" : "none"}}/>
             </form>
             <button onClick={this.handleDecryptSubmit} type="submit" className="button is-danger" style={{ display : this.state.showDecrypt ? "" : "none"}}>Decrypt</button>
