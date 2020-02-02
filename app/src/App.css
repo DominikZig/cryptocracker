@@ -4,6 +4,21 @@
   min-height: 100vh;
 }
 
+.navbar {
+  float: right;
+  background-color: inherit !important;
+}
+
+.navbar-item {
+  color: white !important;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.navbar-item:hover {
+  color: darkgrey !important;
+}
+
 p {
   padding-bottom: 50px !important;
   font-size: 20px;
@@ -23,6 +38,8 @@ h1 {
 }
 
 .App-header {
+  padding-left: 300px;
+  width: available;
   background-color: #002b47;
   min-height: 10vh;
   max-height: 20vh;

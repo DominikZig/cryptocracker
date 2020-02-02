@@ -13,6 +13,14 @@ function App() {
           <img className="lock" src={lock} alt="lock"/>
           <h1>CryptoCracker</h1>
           <img className="unlock" src={unlock} alt="unlock"/>
+          <nav className="navbar is-transparent" role="navigation" aria-label="main navigation">
+              <div id="navbarBasicExample" className="navbar-menu">
+                  <div className="navbar-start">
+                      <a className="navbar-item">Cipher</a>
+                      <a className="navbar-item">Break (coming soon)</a>
+                  </div>
+              </div>
+          </nav>
       </header>
         <body>
             <div className="centre">
