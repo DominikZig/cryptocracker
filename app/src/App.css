@@ -4,6 +4,12 @@
   min-height: 100vh;
 }
 
+p {
+  padding-bottom: 50px !important;
+  font-size: 20px;
+  color: white;
+}
+
 h1 {
   display: inline;
   text-align: center;

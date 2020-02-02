@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import scrambler from "scrambling-letters/js/scrambler";
 
 class FormInput extends React.Component {
 
@@ -91,7 +92,13 @@ class FormInput extends React.Component {
             showDecrypt: true
         });
 
-        this.setEncrypted();
+        this.scrambleText();
+
+        setTimeout(() => {
+
+            this.setEncrypted();
+
+        }, 2200);
     };
 
     handleDecryptSubmit = e => {
@@ -102,7 +109,13 @@ class FormInput extends React.Component {
             showDecrypt: false
         });
 
-        this.setPlain();
+        this.scrambleText();
+
+        setTimeout(() => {
+
+            this.setPlain();
+
+        }, 2200);
     };
 
     changeButton = () => {
@@ -112,13 +125,22 @@ class FormInput extends React.Component {
         });
     };
 
+    scrambleText() {
+        scrambler({
+            target: '[data-scrambler]',
+            random: [2000, 2000],
+            speed: 100
+        });
+    }
+
     render() {
         return (
             <React.Fragment>
+            <p data-scrambler>This is a Caesar Shift Cipher encrypter/decrypter tool. Enter the text and the desired key below:</p>
             <form onSubmit={this.handleEncryptSubmit}>
                     <div id={"inputBox"}><input name="inputTextValue" className="input is-large inputBox" pattern="[A-Za-z]+" type="text" value={this.state.inputTextValue} onChange={this.handleChange} placeholder="Enter your message" required/></div>
                     <div id={"key"}><input name="keyValue" className="input key" type="number" min="1" max="26" value={this.state.keyValue} onChange={this.handleChange} placeholder="Key" required/></div>
-                    <input type="submit" value="Encrypt" className="button is-success" style={{ display : this.state.showEncrypt ? "" : "none"}}/>
+                    <button type="submit" className="button is-success" style={{ display : this.state.showEncrypt ? "" : "none"}}>Encrypt</button>
             </form>
             <button onClick={this.handleDecryptSubmit} type="submit" className="button is-danger" style={{ display : this.state.showDecrypt ? "" : "none"}}>Decrypt</button>
             </React.Fragment>
