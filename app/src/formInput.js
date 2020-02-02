@@ -76,9 +76,7 @@ class FormInput extends React.Component {
 
         if (this.state.inputTextValue.value == null)
         {
-            const encryptAddLoad = document.getElementById("encryptAddLoad");
-            encryptAddLoad.classList.remove("is-loading");
-
+            this.encryptRemoveLoad();
             this.changeButton();
         }
 
@@ -100,9 +98,7 @@ class FormInput extends React.Component {
             });
 
             this.setEncrypted();
-
-            const decryptAddLoad = document.getElementById("decryptAddLoad");
-            decryptAddLoad.classList.remove("is-loading");
+            this.decryptRemoveLoad();
         }, 2200);
     };
 
@@ -119,10 +115,7 @@ class FormInput extends React.Component {
             });
 
             this.setPlain();
-
-            const encryptAddLoad = document.getElementById("encryptAddLoad");
-            encryptAddLoad.classList.remove("is-loading");
-
+            this.encryptRemoveLoad();
             this.changeButton();
         }, 2200);
     };
@@ -135,17 +128,34 @@ class FormInput extends React.Component {
     };
 
     scrambleText() {
-        const encryptAddLoad = document.getElementById("encryptAddLoad");
-        encryptAddLoad.classList.add("is-loading");
-
-        const decryptAddLoad = document.getElementById("decryptAddLoad");
-        decryptAddLoad.classList.add("is-loading");
+        this.encryptAddLoad();
+        this.decryptAddLoad();
 
         scrambler({
             target: '[data-scrambler]',
             random: [2000, 2000],
             speed: 100
         });
+    }
+
+    encryptAddLoad() {
+        const add = document.getElementById("encryptButton");
+        add.classList.add("is-loading");
+    }
+
+    decryptAddLoad() {
+        const add = document.getElementById("decryptButton");
+        add.classList.add("is-loading");
+    }
+
+    encryptRemoveLoad() {
+        const encryptAddLoad = document.getElementById("encryptButton");
+        encryptAddLoad.classList.remove("is-loading");
+    }
+
+    decryptRemoveLoad() {
+        const decryptAddLoad = document.getElementById("decryptButton");
+        decryptAddLoad.classList.remove("is-loading");
     }
 
     render() {
@@ -155,9 +165,9 @@ class FormInput extends React.Component {
             <form onSubmit={this.handleEncryptSubmit}>
                 <div id={"inputBox"}><input name="inputTextValue" className="input is-large inputBox" pattern="[A-Za-z]+" type="text" value={this.state.inputTextValue} onChange={this.handleChange} placeholder="Enter your message" required/></div>
                 <div id={"key"}><input name="keyValue" className="input key" type="number" min="1" max="26" value={this.state.keyValue} onChange={this.handleChange} placeholder="Key" required/></div>
-                <button id={"encryptAddLoad"} type="submit" className="button is-success" style={{ display : this.state.showEncrypt ? "" : "none"}}>Encrypt</button>
+                <button id={"encryptButton"} type="submit" className="button is-success" style={{ display : this.state.showEncrypt ? "" : "none"}}>Encrypt</button>
             </form>
-            <button id={"decryptAddLoad"} onClick={this.handleDecryptSubmit} type="submit" className="button is-danger" style={{ display : this.state.showDecrypt ? "" : "none"}}>Decrypt</button>
+            <button id={"decryptButton"} onClick={this.handleDecryptSubmit} type="submit" className="button is-danger" style={{ display : this.state.showDecrypt ? "" : "none"}}>Decrypt</button>
             </React.Fragment>
         )
     }
