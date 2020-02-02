@@ -76,6 +76,9 @@ class FormInput extends React.Component {
 
         if (this.state.inputTextValue.value == null)
         {
+            const encryptAddLoad = document.getElementById("encryptAddLoad");
+            encryptAddLoad.classList.remove("is-loading");
+
             this.changeButton();
         }
 
@@ -87,34 +90,40 @@ class FormInput extends React.Component {
     handleEncryptSubmit = e => {
         e.preventDefault();
 
-        this.setState({
-            showEncrypt: false,
-            showDecrypt: true
-        });
-
         this.scrambleText();
 
         setTimeout(() => {
 
+            this.setState({
+                showEncrypt: false,
+                showDecrypt: true
+            });
+
             this.setEncrypted();
 
+            const decryptAddLoad = document.getElementById("decryptAddLoad");
+            decryptAddLoad.classList.remove("is-loading");
         }, 2200);
     };
 
     handleDecryptSubmit = e => {
         e.preventDefault();
 
-        this.setState({
-            showEncrypt: true,
-            showDecrypt: false
-        });
-
         this.scrambleText();
 
         setTimeout(() => {
 
+            this.setState({
+                showEncrypt: false,
+                showDecrypt: true
+            });
+
             this.setPlain();
 
+            const encryptAddLoad = document.getElementById("encryptAddLoad");
+            encryptAddLoad.classList.remove("is-loading");
+
+            this.changeButton();
         }, 2200);
     };
 
@@ -126,6 +135,12 @@ class FormInput extends React.Component {
     };
 
     scrambleText() {
+        const encryptAddLoad = document.getElementById("encryptAddLoad");
+        encryptAddLoad.classList.add("is-loading");
+
+        const decryptAddLoad = document.getElementById("decryptAddLoad");
+        decryptAddLoad.classList.add("is-loading");
+
         scrambler({
             target: '[data-scrambler]',
             random: [2000, 2000],
@@ -138,11 +153,11 @@ class FormInput extends React.Component {
             <React.Fragment>
             <p data-scrambler>This is a Caesar Shift Cipher encrypter/decrypter tool. Enter the text and the desired key below:</p>
             <form onSubmit={this.handleEncryptSubmit}>
-                    <div id={"inputBox"}><input name="inputTextValue" className="input is-large inputBox" pattern="[A-Za-z]+" type="text" value={this.state.inputTextValue} onChange={this.handleChange} placeholder="Enter your message" required/></div>
-                    <div id={"key"}><input name="keyValue" className="input key" type="number" min="1" max="26" value={this.state.keyValue} onChange={this.handleChange} placeholder="Key" required/></div>
-                    <button type="submit" className="button is-success" style={{ display : this.state.showEncrypt ? "" : "none"}}>Encrypt</button>
+                <div id={"inputBox"}><input name="inputTextValue" className="input is-large inputBox" pattern="[A-Za-z]+" type="text" value={this.state.inputTextValue} onChange={this.handleChange} placeholder="Enter your message" required/></div>
+                <div id={"key"}><input name="keyValue" className="input key" type="number" min="1" max="26" value={this.state.keyValue} onChange={this.handleChange} placeholder="Key" required/></div>
+                <button id={"encryptAddLoad"} type="submit" className="button is-success" style={{ display : this.state.showEncrypt ? "" : "none"}}>Encrypt</button>
             </form>
-            <button onClick={this.handleDecryptSubmit} type="submit" className="button is-danger" style={{ display : this.state.showDecrypt ? "" : "none"}}>Decrypt</button>
+            <button id={"decryptAddLoad"} onClick={this.handleDecryptSubmit} type="submit" className="button is-danger" style={{ display : this.state.showDecrypt ? "" : "none"}}>Decrypt</button>
             </React.Fragment>
         )
     }
