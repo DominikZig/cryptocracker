@@ -2468,6 +2468,11 @@ builtin-status-codes@^3.0.0:
   resolved "https://registry.yarnpkg.com/builtin-status-codes/-/builtin-status-codes-3.0.0.tgz#85982878e21b98e1c66425e03d0174788f569ee8"
   integrity sha1-hZgoeOIbmOHGZCXgPQF0eI9Wnug=
 
+bulma@^0.8.0:
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/bulma/-/bulma-0.8.0.tgz#ac1606431703a4761b18a4a2d5cc1fa864a2aece"
+  integrity sha512-nhf3rGyiZh/VM7FrSJ/5KeLlfaFkXz0nYcXriynfPH4vVpnxnqyEwaNGdNCVzHyyCA3cHgkQAMpdF/SFbFGZfA==
+
 bytes@3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/bytes/-/bytes-3.0.0.tgz#d32815404d689699f85a4ea4fa8755dd13a96048"
@@ -9079,6 +9084,11 @@ schema-utils@^2.0.0, schema-utils@^2.0.1, schema-utils@^2.1.0, schema-utils@^2.2
   dependencies:
     ajv "^6.10.2"
     ajv-keywords "^3.4.1"
+
+scrambling-letters@^1.6.1:
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/scrambling-letters/-/scrambling-letters-1.6.1.tgz#ecdbc685a9e38d5b172259d76d75292622064ca3"
+  integrity sha512-w9ySdqKI0J9mhxsm6xqvyoeXDXuoLcfzuY+YCroBDO8BwL0+VWKaVC01JMMtP/bh9MzXQD1oQgcq2UGIg7m8IQ==
 
 select-hose@^2.0.0:
   version "2.0.0"
