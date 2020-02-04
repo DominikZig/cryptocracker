@@ -5,7 +5,7 @@ import lock from './padlock-10-128.png';
 import unlock from './padlock-9-128.png';
 import FormInput from "./formInput";
 
-function App() {
+function Main() {
     return (
     <div className="App">
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -31,4 +31,4 @@ function App() {
   );
 }
 
-export default App;
+export default Main;
