@@ -163,7 +163,7 @@ class FormInput extends React.Component {
             <React.Fragment>
             <p data-scrambler>This is a Caesar Shift Cipher encrypter/decrypter tool. Enter the text and the desired key below:</p>
             <form onSubmit={this.handleEncryptSubmit}>
-                <div id={"inputBox"}><input name="inputTextValue" className="input is-large inputBox" pattern="[A-Za-z]+" type="text" value={this.state.inputTextValue} onChange={this.handleChange} placeholder="Enter your message" required/></div>
+                <div id={"inputBox"}><input name="inputTextValue" className="input is-large inputBox" pattern="[A-Za-z ]+" type="text" value={this.state.inputTextValue} onChange={this.handleChange} placeholder="Enter your message" required/></div>
                 <div id={"key"}><input name="keyValue" className="input key" type="number" min="1" max="26" value={this.state.keyValue} onChange={this.handleChange} placeholder="Key" required/></div>
                 <button id={"encryptButton"} type="submit" className="button is-success" style={{ display : this.state.showEncrypt ? "" : "none"}}>Encrypt</button>
             </form>
