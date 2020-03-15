@@ -6,7 +6,7 @@ import zigmanov.dominik.cryptocracker.model.UserInput;
 @Service("CaesarService")
 public class CaesarService
 {
-    private static boolean isAlpha(Character c)
+    private static boolean isChar(Character c)
     {
         return Character.isLetter(c);
     }
@@ -19,7 +19,7 @@ public class CaesarService
 
         for (int i = 0; i < lowerPlainText.length(); i++)
         {
-            if (isAlpha(lowerPlainText.charAt(i)) == true)
+            if (isChar(lowerPlainText.charAt(i)))
             {
                 encryptedText.append((Character.toString((lowerPlainText.charAt(i) - 'a' + theUserInput.getCipherKey()) % 26 + 'a')));
             }
@@ -38,7 +38,7 @@ public class CaesarService
 
         for (int i = 0; i < theUserInput.getInputtedText().length(); i++)
         {
-            if (isAlpha(theUserInput.getInputtedText().charAt(i)) == true)
+            if (isChar(theUserInput.getInputtedText().charAt(i)))
             {
                 decryptedText.append((Character.toString((theUserInput.getInputtedText().charAt(i) - 'a' + 26 - theUserInput.getCipherKey()) % 26 + 'a')));
             }

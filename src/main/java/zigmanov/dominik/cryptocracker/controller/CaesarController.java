@@ -1,7 +1,9 @@
 package zigmanov.dominik.cryptocracker.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import zigmanov.dominik.cryptocracker.model.CipherText;
 import zigmanov.dominik.cryptocracker.model.UserInput;
 import zigmanov.dominik.cryptocracker.service.CaesarService;
@@ -9,8 +11,12 @@ import zigmanov.dominik.cryptocracker.service.CaesarService;
 @RestController
 public class CaesarController
 {
-    @Autowired
-    private CaesarService theService;
+    private final CaesarService theService;
+
+    public CaesarController(CaesarService theService)
+    {
+        this.theService = theService;
+    }
 
     @ResponseBody
     @PostMapping("/encrypt")
